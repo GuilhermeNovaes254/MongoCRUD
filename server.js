@@ -13,7 +13,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
     if(err) return console.log(err)
     db = client.db('names')
-    console.log("Criando conexão")
+    console.log("Creating Connection")
     app.listen(3000, function () {
         console.log("server running on port 3000");
     })
@@ -29,7 +29,7 @@ app.post('/show', function (req, res) {
     db.collection('data').save(req.body, (err, result) => {
         if (err) return console.log(err);
 
-        console.log('salvo no banco de dados')
+        console.log('Saved in the database.')
         res.redirect('/show')
         db.collection('data').find().toArray((err, results)=>{
             console.log(results);
