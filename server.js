@@ -21,6 +21,7 @@ const client = new MongoClient(uri, {
 
 
 client.connect(err => {
+
     if (err) return console.log(err)
     db = client.db('names')
     console.log("Creating Connection")
@@ -34,6 +35,7 @@ app.get('/', function (req, res) {
 })
 
 app.post('/show', function (req, res) {
+
     db.collection('data').save(req.body, (err, result) => {
         if (err) return console.log(err);
 
@@ -47,6 +49,7 @@ app.post('/show', function (req, res) {
 })
 
 app.get('/show', (req, res) => {
+
     db.collection('data').find().toArray((err, results) => {
         if (err) return console.log(err)
         res.render('show.ejs', {
@@ -57,26 +60,57 @@ app.get('/show', (req, res) => {
 })
 
 app.get('/delete', (req, res) => {
-    let name = req.query.name
-    console.log(name)
+
+    let {id} = req.query
+    
     db.collection('data').deleteOne({
-        name: name
+        _id: ObjectId(id)
     })
 
     res.redirect('/show')
 })
 
 app.get('/update', (req, res) => {
+
     let {
         name,
         surname,
         id
     } = req.query
-    db.collection('data').findOne({_id: ObjectId(id)}, ((err, results) => {
+    // db.collection('data').findOne({_id: ObjectId(id)}, ((err, results) => {
 
-        console.log(results)
-        console.log(id)
+    if (name != undefined && surname == undefined) {
+        db.collection('data').updateOne({
+            _id: ObjectId(id)
+        }, {
+            $set: {
+                name: name
+            }
+        })
+    }
 
-        res.redirect('/show')
-    }))
+    if (surname != undefined && name == undefined) {
+        db.collection('data').updateOne({
+            _id: ObjectId(id)
+        }, {
+            $set: {
+                surname: surname
+            }
+        })
+    }
+
+    if (surname != undefined && name != undefined) {
+        db.collection('data').updateOne({
+            _id: ObjectId(id)
+        }, {
+            $set: {
+                name: name,
+                surname: surname
+            }
+        })
+    }
+
+    
+
+    res.redirect('/show')
 })

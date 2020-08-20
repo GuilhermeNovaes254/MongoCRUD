@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>My CRUD in NodeJS</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
-<body>
+<body style="margin-left: 15px">
 
-    <h2>Registros<h2>
-    <table border="1">
-        <thead>
+    <h2 style="margin-left: 15px">Records<h2>
+        <div style='height: 50px;'></div>
+    <table border="2" style="margin-left: 15px">
+        <thead >
             <tr>
-                <td>Name</td>
-                <td>Surname</td>
+                <td style="color: red;">Name</td>
+                <td style="color: red;">Surname</td>
             </tr>
         </thead>
         <tbody>
@@ -24,9 +26,10 @@
             </tr>
             <% }) %>
         </tbody>
-        <button><a href="/">Back</a></button>
+        
     </table>
-
+    <div style='height: 50px'></div>
+    <button class="w3-btn w3-black" style="margin-left: 15px; border-radius:10px"><a href="/">Back</a></button>
 </body>
 
 </html>
