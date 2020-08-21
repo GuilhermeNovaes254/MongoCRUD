@@ -52,8 +52,11 @@ app.get('/show', (req, res) => {
 
     db.collection('data').find().toArray((err, results) => {
         if (err) return console.log(err)
+
+
         res.render('show.ejs', {
             data: results
+
         })
 
     })
@@ -61,13 +64,34 @@ app.get('/show', (req, res) => {
 
 app.get('/delete', (req, res) => {
 
-    let {id} = req.query
-    
+    let {
+        id
+    } = req.query
+
     db.collection('data').deleteOne({
         _id: ObjectId(id)
     })
 
     res.redirect('/show')
+})
+
+app.get('/update/params', (req, res) => {
+
+    let {
+        id
+    } = req.query
+
+    db.collection('data').findOne({
+        _id: ObjectId(id)
+    }, (err, results) => {
+        if (err) return console.log(err)
+
+        res.render('params.ejs', {
+            params: results
+        })
+
+    })
+
 })
 
 app.get('/update', (req, res) => {
@@ -78,8 +102,14 @@ app.get('/update', (req, res) => {
         id
     } = req.query
     // db.collection('data').findOne({_id: ObjectId(id)}, ((err, results) => {
+    console.log(name)
+    console.log(surname)
+    console.log(typeof (name))
+    console.log(typeof (surname))
+    console.log(name.length)
 
-    if (name != undefined && surname == undefined) {
+    // console.log(typeof (name))
+    if (name.length > 0 && surname.length == 0) {
         db.collection('data').updateOne({
             _id: ObjectId(id)
         }, {
@@ -87,30 +117,31 @@ app.get('/update', (req, res) => {
                 name: name
             }
         })
-    }
 
-    if (surname != undefined && name == undefined) {
-        db.collection('data').updateOne({
-            _id: ObjectId(id)
-        }, {
-            $set: {
-                surname: surname
+    } else {
+        if (surname.length > 0 && name.length == 0) {
+            db.collection('data').updateOne({
+                _id: ObjectId(id)
+            }, {
+                $set: {
+                    surname: surname
+                }
+            })
+
+        } else {
+            if (surname.length > 0 && name.length > 0) {
+                db.collection('data').updateOne({
+                    _id: ObjectId(id)
+                }, {
+                    $set: {
+                        name: name,
+                        surname: surname
+                    }
+                })
+
             }
-        })
+        }
     }
-
-    if (surname != undefined && name != undefined) {
-        db.collection('data').updateOne({
-            _id: ObjectId(id)
-        }, {
-            $set: {
-                name: name,
-                surname: surname
-            }
-        })
-    }
-
-    
 
     res.redirect('/show')
 })

@@ -16,6 +16,9 @@
             <tr>
                 <td style="color: red;">Name</td>
                 <td style="color: red;">Surname</td>
+                <td style="color: red;">Edit</td>
+                <td style="color: red;">Delete</td>
+                
             </tr>
         </thead>
         <tbody>
@@ -23,6 +26,8 @@
             <tr>
                 <td><%= details.name %></td>
                 <td><%= details.surname %></td>
+                <td><a href="/update/params?id=<%= details._id%>">Update</a></td>
+                <td><a href="/delete?id=<%= details._id%>">Delete</a></td>
             </tr>
             <% }) %>
         </tbody>
