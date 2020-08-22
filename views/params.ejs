@@ -3,42 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>My CRUD in NodeJS</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+  <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
-<body style="margin-left: 15px">
+<body>
 
     <h2>Updating <h2>
 
-        <form action="/update" method="GET">
-            <input type="text" placeholder="Name" name="name"><br>
-            <input type="text" placeholder="Surname" name="surname"><br>
-            <input type="hidden" placeholder="Surname" name="id" value="<%= params._id %>">
-            
-            <div style='height: 30px; margin-left: 50px;'></div>
-            <button type="submit" class="w3-btn w3-black" style="border-radius:10px">Update</button>
-        </form> 
+    <form action="/update" method="GET">
+        <input type="text" placeholder="Name" name="name"><br>
+        <input type="text" placeholder="Surname" name="surname"><br>
+        <input type="hidden" placeholder="Surname" name="id" value="<%= params._id %>">
         
-    <div style='height: 50px'></div>
-        <button type="submit" class="w3-btn w3-black" style="border-radius:10px" ><a href="/show">Back</a></button>
-    
-        <div style='height: 50px'></div>
-        <table border="2" style="margin-left: 15px">
-            <thead >
-                <tr>
-                    <td style="color: red;">Name</td>
-                    <td style="color: red;">Surname</td>
-                    <td style="color: red;">Id</td>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><%= params.name %></td>
-                    <td><%= params.surname %></td>
-                    <td><%= params._id %></td>
-                </tr>
-            </tbody>
+        <div class="space"></div>
+        <button type="submit" class="button" >Update</button>
+    </form> 
+    <br>
 
+    <div class="space"></div>
+    <table border="2">
+        <thead >
+            <tr>
+                <td class="tableHead">Name</td>
+                <td class="tableHead">Surname</td>
+                <td class="tableHead">Id</td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= params.name %></td>
+                <td><%= params.surname %></td>
+                <td><%= params._id %></td>
+            </tr>
+        </tbody>
+    </table>
+    <div  class="space"></div>
+ <button type="submit" class="button" ><a href="/show">Back</a></button>
 </body>
 </html>

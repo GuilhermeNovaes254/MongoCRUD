@@ -4,37 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <title>My CRUD in NodeJS</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body style="margin-left: 15px">
+<body>
 
-    <h2 style="margin-left: 15px">Records<h2>
-        <div style='height: 50px;'></div>
-    <table border="2" style="margin-left: 15px">
+    <h2>Records<h2>
+    
+    <div class="space"></div>
+
+    <table border="2" >
+        
         <thead >
             <tr>
-                <td style="color: red;">Name</td>
-                <td style="color: red;">Surname</td>
-                <td style="color: red;">Edit</td>
-                <td style="color: red;">Delete</td>
-                
+                <td class="tableHead">Name</td>
+                <td class="tableHead">Surname</td>
+                <td class="tableHead">Edit</td>
+                <td class="tableHead">Delete</td>
             </tr>
         </thead>
+        
         <tbody>
             <% data.forEach(function(details) { %>
             <tr>
                 <td><%= details.name %></td>
                 <td><%= details.surname %></td>
-                <td><a href="/update/params?id=<%= details._id%>">Update</a></td>
-                <td><a href="/delete?id=<%= details._id%>">Delete</a></td>
+                <td cl><a  class="content" href="/update/params?id=<%= details._id%>">Update</a></td>
+                <td><a  class="content" href="/delete?id=<%= details._id%>">Delete</a></td>
             </tr>
             <% }) %>
         </tbody>
         
     </table>
-    <div style='height: 50px'></div>
-    <button class="w3-btn w3-black" style="margin-left: 15px; border-radius:10px"><a href="/">Back</a></button>
+    <div  class="space"></div>
+    <button  class="button"><a href="/">Back</a></button>
+    
 </body>
 
 </html>

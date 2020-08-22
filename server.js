@@ -1,16 +1,22 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const path = require('path');
 
 const ObjectId = require('mongodb').ObjectID;
 const MongoClient = require('mongodb').MongoClient;
+
 
 
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'))
 
 // const uri = "mongodb+srv://crud-node:<password>@cluster0.kxcxw.mongodb.net/<namedb>?retryWrites=true&w=majority";
 const uri = "mongodb://localhost:27017/names"
@@ -102,11 +108,7 @@ app.get('/update', (req, res) => {
         id
     } = req.query
     // db.collection('data').findOne({_id: ObjectId(id)}, ((err, results) => {
-    console.log(name)
-    console.log(surname)
-    console.log(typeof (name))
-    console.log(typeof (surname))
-    console.log(name.length)
+
 
     // console.log(typeof (name))
     if (name.length > 0 && surname.length == 0) {
